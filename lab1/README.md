@@ -37,19 +37,19 @@
 Після встановлення операційної системи було виконано початкове оновлення системи за допомогою наступної команди:
 
 ```bash
-sudo apt update && sudo apt upgrade -y  ```bash
-
+sudo apt update && sudo apt upgrade -y  
+```bash
 ### Встановлення драйверів
 
 Для автоматичного встановлення рекомендованих драйверів була використана команда:
 
 ```bash
-sudo ubuntu-drivers autoinstall ```bash
-
+sudo ubuntu-drivers autoinstall 
+```bash
 Після успішного встановлення драйверів потрібне перезаванатження системи за допомогою команди:
 
 ```bash
-sudo reboot  ```bash
-
+sudo reboot  
+```bash
 
 
