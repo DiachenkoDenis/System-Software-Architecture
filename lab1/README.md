@@ -111,25 +111,33 @@ Hello Ubuntu
 
 ```bash
 ssh-keygen -t ed25519 -C "your_email@example.com"
+```
 Під час створення ключа всі параметри можна залишити стандартними (натискати Enter).
 
 Додавання ключа до ssh-agent
+```bash
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
+```
 Додавання SSH-ключа до GitHub
 Публічний ключ виводиться командою:
-
+```bash
 cat ~/.ssh/id_ed25519.pub
+```
 Отриманий ключ необхідно додати на GitHub:
 
 Settings → SSH and GPG keys → New SSH key
 
 Перевірка зʼєднання з GitHub
+```bash
 ssh -T git@github.com
+```
 У разі успішного підключення зʼявиться повідомлення про успішну автентифікацію.
 
 Перемикання репозиторію з HTTPS на SSH
+```bash
 git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
+```
 Після цього команда git push виконується без введення логіна, пароля або токенів.
 
 
