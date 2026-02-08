@@ -39,6 +39,7 @@
 ```bash
 sudo apt update && sudo apt upgrade -y  
 ```
+![Оновлення системи](screenshots/system-update.png)
 ### Встановлення драйверів
 
 Для автоматичного встановлення рекомендованих драйверів була використана команда:
@@ -46,6 +47,7 @@ sudo apt update && sudo apt upgrade -y
 ```bash
 sudo ubuntu-drivers autoinstall 
 ```
+![Встановлення драйверів](screenshots/drivers.png)
 Після успішного встановлення драйверів потрібне перезаванатження системи за допомогою команди:
 
 ```bash
@@ -58,6 +60,7 @@ sudo reboot
 ```bash
 sudo apt install build-essential git -y
 ```
+![Встановлення бази для програмування](screenshots/build-essential.png)
 ## Виконання першої програми мовою C
 
 ### Створення файлу
@@ -93,9 +96,9 @@ gcc hello.c -o hello
 ./hello
 ```
 
-Очікуваний результат виконання: 
-Hello Ubuntu
+Очікуваний результат виконання програми:
 
+![Результат виконання програми](screenshots/hello-result.png)
 ## Проблема авторизації GitHub у VirtualBox та її вирішення
 
 Під час виконання практичної роботи виникла проблема з авторизацією при виконанні команди `git push` з віртуальної машини Ubuntu до репозиторію GitHub.  
