@@ -117,6 +117,8 @@ ssh-keygen -t ed25519 -C "your_email@example.com"
 Додавання ключа до ssh-agent
 ```bash
 eval "$(ssh-agent -s)"
+```
+```bash
 ssh-add ~/.ssh/id_ed25519
 ```
 Додавання SSH-ключа до GitHub
