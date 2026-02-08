@@ -51,5 +51,11 @@ sudo ubuntu-drivers autoinstall
 ```bash
 sudo reboot  
 ```
+## Встановлення інструментів для програмування
 
+Для підготовки середовища розробки було встановлено базовий набір інструментів:
+
+```bash
+sudo apt install build-essential git -y
+```
 
