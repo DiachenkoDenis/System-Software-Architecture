@@ -58,4 +58,39 @@ sudo reboot
 ```bash
 sudo apt install build-essential git -y
 ```
+## Виконання першої програми мовою C
 
+### Створення файлу
+
+Для створення програми було використано текстовий редактор `nano`:
+
+```bash
+nano hello.c
+```
+```bash
+#include <stdio.h>
+
+int main() {
+    printf("Hello Ubuntu\n");
+    return 0;
+}
+```
+Файл було збережено за допомогою комбінацій клавіш:
+
+Ctrl + O → Enter
+
+Ctrl + X
+
+### Компіляція та запуск програми
+
+Компіляція програми виконувалась за допомогою компілятора `gcc`:
+
+```bash
+gcc hello.c -o hello
+```
+Запуск скомпільованої програми:
+```bash
+./hello
+```
+
+Очікуваний результат виконання: Hello Ubuntu
