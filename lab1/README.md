@@ -192,6 +192,9 @@ git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 - кількість хвилин — з остачі після визначення годин
 - секунди — залишок після визначення хвилин
 
+### Код програми
+
+```c
 
 
 
