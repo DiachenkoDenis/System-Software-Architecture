@@ -195,7 +195,55 @@ git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 ### Код програми
 
 ```c
+#include <stdio.h>
+#include <stdlib.h>
 
+int main(void) {
+	int seconds;
+	int hours, minutes, secs;
+	int is_negative = 0;
+	printf("Enter the number of seconds: ");
+	scanf("%d", &seconds);
+	
+	if (seconds < 0) {
+		is_negative = 1;
+		seconds = abs(seconds);
+	}
+
+	hours = seconds/3600;
+	minutes = (seconds % 3600) / 60;
+	secs = seconds % 60;
+
+	if (is_negative) {
+		printf("%d seconds is equivalent to %d hours %d minutes %dseconds in the past./n", -seconds, hours, minutes, secs);
+	}
+	else {
+		printf("%d seconds is equivalent to %d hours %d minutes %d seconds./n", seconds, hours, minutes, secs);
+	}
+	return 0;
+}
+
+Компіляція та запуск програми
+
+Компіляція програми здійснюється за допомогою компілятора gcc:
+
+gcc time_converter.c -o time_converter
+
+
+Запуск програми:
+
+./time_converter
+
+Приклад роботи програми
+
+На скріншоті нижче показано приклад виконання програми з введенням кількості секунд та коректним виведенням результату.
+
+![Скріншот виконання](screenshots/time_converter.png)
+
+Висновок
+
+У ході виконання завдання було реалізовано програму мовою ANSI C, яка коректно перетворює кількість секунд у години, хвилини та секунди.
+Програма підтримує обробку відʼємних значень, що дозволяє інтерпретувати введений час як такий, що відбувався у минулому.
 
 
 
