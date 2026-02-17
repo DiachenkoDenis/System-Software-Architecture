@@ -140,6 +140,7 @@ int main (void) {
 ```bash
 ls -l a.out
 size a.out
+```
 1) Hello world
 ![size](screenshots/pr221.png)
 
