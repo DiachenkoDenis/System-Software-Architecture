@@ -60,7 +60,7 @@ int main(void) {
 gcc time_limit.c -o time_limit
 ./time_limit
 ```
-![64-bit](lab2/screenshots/pr2(2,2(1)).png)
+![64-bit](<lab2/screenshots/pr2(2,2(1)).png>)
 
 На скріншоті відображено запуску програми за допомогою 64-бітної системи.
 Після успішного встановлення драйверів потрібне перезаванатження системи за допомогою команди:
@@ -69,7 +69,7 @@ gcc time_limit.c -o time_limit
 gcc -m32 time_limit.c -o time_limit32
 ./time_limit32
 ```
-![32-bit](lab2/screenshots/pr2(2,2(2)).png)
+![32-bit](<lab2/screenshots/pr2(2,2(2)).png>)
 
 На скріншоті відображено запуску програми за допомогою 64-бітної системи.
 Очікувана різниця: архітектура	sizeof(time_t)
