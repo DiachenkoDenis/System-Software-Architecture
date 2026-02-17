@@ -60,7 +60,7 @@ int main(void) {
 gcc time_limit.c -o time_limit
 ./time_limit
 ```
-![64-bit](screenshots/pr2(11).png)
+![64-bit](screenshots/ex1_1v.png)
 
 На скріншоті відображено запуску програми за допомогою 64-бітної системи.
 
@@ -69,7 +69,7 @@ gcc time_limit.c -o time_limit
 gcc -m32 time_limit.c -o time_limit32
 ./time_limit32
 ```
-![32-bit](screenshots/pr2(1,2).png)
+![32-bit](screenshots/ex1_2v.png)
 
 На скріншоті відображено запуску програми за допомогою 32-бітної системи.
 
