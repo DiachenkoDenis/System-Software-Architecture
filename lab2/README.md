@@ -161,3 +161,51 @@ size a.out
 При компіляції з -g збільшується розмір виконуваного файлу, тому що додається debug-інформація, але text/data/bss майже не змінюються. При -O2 найбільше змінюється сегмент text, оскільки оптимізація впливає на машинний код.
 ![size](screenshots/pr2(2,2(5)).png)
 ![size](screenshots/pr2(2,2(6)).png)
+
+
+
+Завдання 2.3 — Дослідження розташування сегментів пам’яті
+
+У цьому завданні потрібно було дослідити, як у пам’яті процесу розташовуються різні сегменти: text, data, bss, heap та stack. Також потрібно було перевірити, як змінюється вершина стека при виклику функції.
+
+Для цього я написав просту програму, яка виводить адреси різних змінних і функцій. Таким способом можна приблизно побачити, де саме в пам’яті вони знаходяться.
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+int global_init = 10;  
+int global_bss;        
+
+void test_stack() {
+    int local_array[1000];
+    printf("Stack inside function: %p\n", &local_array);
+}
+
+int main() {
+    int local_var;
+    int *heap_var = malloc(sizeof(int));
+
+    printf("Function (TEXT): %p\n", main);
+    printf("Global init (DATA): %p\n", &global_init);
+    printf("Global bss (BSS): %p\n", &global_bss);
+    printf("Heap (malloc): %p\n", heap_var);
+    printf("Stack (local var): %p\n", &local_var);
+
+    printf("Calling function to grow stack...\n");
+    test_stack();
+
+    free(heap_var);
+    return 0;
+}
+```c
+
+Програма виводить адресу функції main (це сегмент text), адресу ініціалізованої глобальної змінної (це data), адресу неініціалізованої глобальної змінної (це bss), адресу пам’яті з malloc() (це heap) та адресу локальної змінної (це stack).
+
+Після цього викликається функція test_stack(), у якій створюється великий локальний масив. Це дозволяє побачити, як змінюється адреса вершини стека. У більшості систем стек зростає вниз, тобто нові адреси будуть меншими.
+
+Компіляція та запуск
+```c
+gcc mem_layout.c -o mem_layout
+./mem_layout
+```c
