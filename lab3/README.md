@@ -7,7 +7,9 @@
 
 # Підготовка середовища
 Для виконання завдань використовувався Docker контейнер з образом Ubuntu.
-Запуск контейнера:
+
+Запуск контейнера відбувається за допомогою команди:
+
 ///
 docker run -it --rm --privileged -v "$PWD":/work -w /work ubuntu:24.04 bash
 ///
@@ -46,3 +48,4 @@ permission denied while trying to connect to the Docker daemon
 sudo docker run -it --rm --privileged -v "$PWD":/work -w /work ubuntu:24.04 bash
 ///
 Після цього контейнер запустився нормально.
+
