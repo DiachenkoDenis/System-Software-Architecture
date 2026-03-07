@@ -132,7 +132,8 @@ ulimit -n 3000
 
 Результат виконання команд з root правами
 
-![Робота з root](screenshots/ex1root.png.png)
+![Робота з root](screenshots/ex1root.png)
+
 
 
 
