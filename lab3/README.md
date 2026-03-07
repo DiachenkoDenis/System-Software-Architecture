@@ -10,9 +10,9 @@
 
 Запуск контейнера відбувається за допомогою команди:
 
-///
+'''
 docker run -it --rm --privileged -v "$PWD":/work -w /work ubuntu:24.04 bash
-\\\
+'''
 
 Пояснення параметрів:
 - `-it` — запуск контейнера у інтерактивному режимі  
@@ -48,6 +48,7 @@ permission denied while trying to connect to the Docker daemon
 sudo docker run -it --rm --privileged -v "$PWD":/work -w /work ubuntu:24.04 bash
 ///
 Після цього контейнер запустився нормально.
+
 
 
 
