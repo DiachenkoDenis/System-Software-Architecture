@@ -10,9 +10,9 @@
 
 Запуск контейнера відбувається за допомогою команди:
 
-'''
+```
 docker run -it --rm --privileged -v "$PWD":/work -w /work ubuntu:24.04 bash
-'''
+```
 
 Пояснення параметрів:
 - `-it` — запуск контейнера у інтерактивному режимі  
@@ -27,10 +27,10 @@ docker run -it --rm --privileged -v "$PWD":/work -w /work ubuntu:24.04 bash
 # Встановлення необхідних програм
 
 Після запуску контейнера потрібно встановити необхідні інструменти.
-///
+```
 apt update
 apt install gcc nano
-///
+```
 
 Було встановлено:
 - **gcc** — для компіляції програм на C  
@@ -44,10 +44,11 @@ permission denied while trying to connect to the Docker daemon
 Ця проблема виникає через відсутність прав доступу до Docker.
 
 Рішення:
-///
+```
 sudo docker run -it --rm --privileged -v "$PWD":/work -w /work ubuntu:24.04 bash
-///
+```
 Після цього контейнер запустився нормально.
+
 
 
 
