@@ -79,7 +79,7 @@ gcc malloc_test.c -o malloc_test
 ```
 Скріншот запуску програми:
 
-![Скріншот](ex1_2.png)
+![Скріншот](screenshots/ex1_2.png)
 
 ## Очікуваний результат
 
@@ -152,7 +152,7 @@ gcc malloc_negative_test.c -o malloc_negative_test_64
 
 Скріншот компіляції та запуску для x86_64:
 
-![Скріншот](ex2_1.png)
+![Скріншот](screenshots/ex2_1.png)
 
 ### Компіляція програми для x86
 
@@ -168,7 +168,7 @@ gcc -m32 malloc_negative_test.c -o malloc_negative_test_32
 
 Скріншот компіляції та запуску для x86:
 
-![Скріншот](ex2_2.png)
+![Скріншот](screenshots/ex2_2.png)
 
 ## Результати виконання
 
@@ -241,7 +241,7 @@ gcc malloc_zero_test.c -o malloc_zero_test
 ```
 Скріншот компіляції та запуску програми:
 
-![Скріншот](ex3_1.png)
+![Скріншот](screenshots/ex3_1.png)
 
 ## Виконання програми через ltrace
 
@@ -251,7 +251,7 @@ ltrace ./malloc_zero_test
 ```
 Скріншот виконання через ltrace:
 
-![Скріншот](ex3_2.png)
+![Скріншот](screenshots/ex3_2.png)
 
 ## Результати виконання
 
@@ -350,7 +350,7 @@ gcc malloc_loop_fixed.c -o malloc_loop_fixed
 ```
 Скріншот запуску програм:
 
-![Скріншот](ex4_1.png)
+![Скріншот](screenshots/ex4_1.png)
 
 ## Результати виконання
 
@@ -432,7 +432,7 @@ gcc realloc_fail_test.c -o realloc_fail_test
 ```
 Скріншот компіляції:
 
-![Скріншот](ex5__1.png)
+![Скріншот](screenshots/ex5__1.png)
 
 ## Запуск програми
 
@@ -442,7 +442,7 @@ gcc realloc_fail_test.c -o realloc_fail_test
 ```
 Скріншот запуску програми:
 
-![Скріншот](ex5__2.png)
+![Скріншот](screenshots/ex5__2.png)
 
 ## Результати виконання
 
@@ -510,7 +510,7 @@ gcc realloc_special_cases_test.c -o realloc_special_cases_test
 ```
 Скріншот компіляції:
 
-![Скріншот](ex6_1.png)
+![Скріншот](screenshots/ex6_1.png)
 
 ## Запуск програми
 
@@ -520,7 +520,7 @@ gcc realloc_special_cases_test.c -o realloc_special_cases_test
 ```
 Скріншот запуску програми:
 
-![Скріншот](ex6_2.png)
+![Скріншот](screenshots/ex6_2.png)
 
 ## Результати виконання
 
@@ -640,7 +640,7 @@ gcc realloc_test.c -o realloc_test
 ```
 Скріншот компіляції та запуску:
 
-![Скріншот](ex7_1.png)
+![Скріншот](screenshots/ex7_1.png)
 
 ## Компіляція програми з reallocarray()
 
@@ -654,7 +654,7 @@ gcc reallocarray_test.c -o reallocarray_test
 ```
 Скріншот компіляції та запуску:
 
-![Скріншот](ex7_2.png)
+![Скріншот](screenshots/ex7_2.png)
 
 ## Порівняння через ltrace
 
@@ -670,7 +670,7 @@ ltrace ./reallocarray_test
 ```
 Скріншот виконання через ltrace:
 
-![Скріншот](ex7_3.png)
+![Скріншот](screenshots/ex7_3.png)
 
 ## Результати виконання
 
@@ -790,7 +790,7 @@ gcc lazy_allocation_test.c -o lazy_allocation_test
 ```
 Скріншот запуску програми:
 
-![Скріншот](ex8_1.png)
+![Скріншот](screenshots/ex8_1.png)
 
 ## Результати виконання
 
