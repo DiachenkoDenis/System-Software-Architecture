@@ -621,3 +621,148 @@ realloc(ptr, 0) returned NULL
 Було встановлено, що виклик realloc(NULL, size) працює аналогічно до malloc(size) і виділяє нову область пам’яті.
 
 Також було підтверджено, що виклик realloc(ptr, 0) звільняє раніше виділену пам’ять. У даній реалізації бібліотеки функція повернула NULL.
+
+## Завдання 4.7 - Використання reallocarray() замість realloc()
+
+У даному завданні потрібно переписати код із використанням realloc() на варіант із використанням reallocarray().
+
+### Початковий фрагмент коду:
+```
+struct sbar *ptr, *newptr;
+ptr = calloc(1000, sizeof(struct sbar));
+newptr = realloc(ptr, 500*sizeof(struct sbar));
+```
+Функція realloc() приймає вже обчислений розмір у байтах.
+У випадку, якщо цей розмір обчислюється як добуток кількості елементів на розмір структури, існує ризик переповнення під час множення.
+
+Функція reallocarray() призначена саме для таких випадків. Вона приймає кількість елементів та розмір одного елемента окремо, що робить код безпечнішим і зрозумілішим.
+
+Переписаний варіант коду:
+```
+struct sbar *ptr, *newptr;
+ptr = calloc(1000, sizeof(struct sbar));
+newptr = reallocarray(ptr, 500, sizeof(struct sbar));
+```
+Для дослідження було створено дві тестові програми: одна з використанням realloc(), а друга — з використанням reallocarray().
+
+## Код програми:
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+struct sbar {
+    int a;
+    double b;
+    char c;
+};
+int main() {
+    struct sbar *ptr, *newptr;
+    ptr = calloc(1000, sizeof(struct sbar));
+    if (ptr == NULL) {
+        printf("calloc failed\n");
+        return 1;
+    }
+    newptr = realloc(ptr, 500 * sizeof(struct sbar));
+    if (newptr == NULL) {
+        printf("realloc failed\n");
+        free(ptr);
+        return 1;
+    }
+    printf("realloc succeeded\n");
+    free(newptr);
+    return 0;
+}
+```
+
+## Код програми:
+```c
+#define _DEFAULT_SOURCE
+#include <stdio.h>
+#include <stdlib.h>
+
+struct sbar {
+    int a;
+    double b;
+    char c;
+};
+int main() {
+    struct sbar *ptr, *newptr;
+    ptr = calloc(1000, sizeof(struct sbar));
+    if (ptr == NULL) {
+        printf("calloc failed\n");
+        return 1;
+    }
+    newptr = reallocarray(ptr, 500, sizeof(struct sbar));
+    if (newptr == NULL) {
+        printf("reallocarray failed\n");
+        free(ptr);
+        return 1;
+    }
+    printf("reallocarray succeeded\n");
+    free(newptr);
+    return 0;
+}
+```
+## Компіляція програми з realloc()
+
+Компіляція виконується за допомогою компілятора gcc:
+```
+gcc realloc_test.c -o realloc_test
+```
+## Запуск програми:
+```
+./realloc_test
+```
+Скріншот компіляції та запуску:
+
+(скріншот)
+
+## Компіляція програми з reallocarray()
+
+Компіляція виконується за допомогою компілятора gcc:
+```
+gcc reallocarray_test.c -o reallocarray_test
+```
+## Запуск програми:
+```
+./reallocarray_test
+```
+Скріншот компіляції та запуску:
+
+(скріншот)
+
+## Порівняння через ltrace
+
+Для порівняння роботи обох варіантів програми було виконано запуск через ltrace.
+
+## Запуск програми з realloc():
+```
+ltrace ./realloc_test
+```
+## Запуск програми з reallocarray():
+```
+ltrace ./reallocarray_test
+```
+Скріншот виконання через ltrace:
+
+(скріншот)
+
+## Результати виконання
+
+Під час виконання обох програм спочатку виконується виділення пам’яті за допомогою calloc().
+
+У першому випадку зміна розміру пам’яті виконується функцією realloc(), якій передається вже обчислений розмір у байтах.
+
+У другому випадку використовується функція reallocarray(), яка приймає кількість елементів і розмір одного елемента окремо.
+
+Під час запуску через ltrace видно, що в першій програмі викликається realloc(), а в другій — reallocarray().
+
+Таким чином, обидва варіанти виконують зміну розміру пам’яті, але reallocarray() є більш безпечним варіантом у випадках, коли розмір пам’яті обчислюється як добуток двох значень.
+
+## Висновок
+
+У ході виконання завдання було переписано код із використанням realloc() на варіант із використанням reallocarray().
+
+Було встановлено, що функція reallocarray() дозволяє передавати кількість елементів та розмір одного елемента окремо, що зменшує ризик переповнення при обчисленні загального розміру пам’яті.
+
+Порівняння через ltrace показало різницю у викликах функцій, але загальна логіка роботи програм залишилась однаковою.
