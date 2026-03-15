@@ -69,7 +69,7 @@ gcc malloc_test.c -o malloc_test
 ```
 ## Скріншот компіляції:
 
-![Скріншот](ex1_1.png)
+![Скріншот](screenshots/ex1_1.png)
 
 ## Запуск програми
 
