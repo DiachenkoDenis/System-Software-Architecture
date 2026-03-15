@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 int main() {
     int *ptr = NULL;
     for (int i = 0; i < 3; i++) {
