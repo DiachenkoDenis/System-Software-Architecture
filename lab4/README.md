@@ -780,7 +780,7 @@ gcc lazy_allocation_test.c -o lazy_allocation_test
 ```
 Скріншот компіляції:
 
-(скріншот)
+![Скріншот](screenshots/ex8_1.png)
 
 ## Запуск програми
 
@@ -790,7 +790,7 @@ gcc lazy_allocation_test.c -o lazy_allocation_test
 ```
 Скріншот запуску програми:
 
-![Скріншот](screenshots/ex8_1.png)
+![Скріншот](screenshots/ex8_2.png)
 
 ## Результати виконання
 
