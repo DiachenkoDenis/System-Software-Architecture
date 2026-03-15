@@ -860,9 +860,9 @@ gcc lazy_allocation_test.c -o lazy_allocation_test
 ## Запуск програми
 
 Запуск програми:
-
+```
 ./lazy_allocation_test
-
+```
 Скріншот запуску програми:
 
 (скріншот)
