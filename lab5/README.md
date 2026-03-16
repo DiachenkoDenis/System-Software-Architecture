@@ -112,7 +112,7 @@ gcc fragmentation_test.c -o fragmentation_test
 ```
 Скріншот компіляції:
 
-(скріншот)
+![Скріншот](screenshots/ex11_11.png)
 
 ## Компіляція виконується за допомогою компілятора gcc:
 ```
@@ -120,7 +120,7 @@ gcc fragmentation_test.c -o fragmentation_test
 ```
 Скріншот компіляції:
 
-(скріншот)
+![Скріншот](screenshots/ex22_22.png)
 
 ## Результати виконання
 
