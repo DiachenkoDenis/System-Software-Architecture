@@ -1,23 +1,17 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 int main() {
-    char *ptr = malloc(32);
+    int fd = open("test.txt", O_RDONLY);
 
-    if (ptr == NULL) {
-        printf("malloc failed\n");
+    if (fd == -1) {
+        perror("open failed");
         return 1;
     }
 
-    strcpy(ptr, "Hello from heap memory");
-    printf("Before free: %s\n", ptr);
+    printf("File opened successfully, fd = %d\n", fd);
 
-    free(ptr);
-
-    ptr[0] = 'X';
-
-    printf("After free: %s\n", ptr);
-
+    close(fd);
     return 0;
 }
