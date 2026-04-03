@@ -90,7 +90,7 @@ File opened successfully, fd = 3
 
 Скріншот запуску:
 
-![Скріншот](screenshots/l6.1.png)
+![Скріншот](screenshots/l6.12.png)
 
 ### Запуск програми з використанням LD_PRELOAD
 
@@ -107,7 +107,7 @@ File opened successfully, fd = 3
 
 Скріншот виконання:
 
-![Скріншот](screenshots/l6.2.png)
+![Скріншот](screenshots/l6.123.png)
 
 ### Використання strace
 
@@ -125,7 +125,7 @@ openat(AT_FDCWD, "test.txt", O_RDONLY) = 3
 
 ### Скріншот роботи:
 
-![Скріншот](screenshots/ex11_11.png)
+![Скріншот](screenshots/l6.1234.png)
 
 ### Порівняння підходів
 
