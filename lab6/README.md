@@ -83,12 +83,14 @@ gcc -shared -fPIC open_logger.c -o libopen_logger.so -ldl
 ./task
 ```
 Результат виконання:
-
+```
 File opened successfully, fd = 3
-
+```
 У цьому випадку функція open() викликається стандартною бібліотекою без додаткового логування.
 
 Скріншот запуску:
+
+![Скріншот](screenshots/l6.1.png)
 
 ### Запуск програми з використанням LD_PRELOAD
 
