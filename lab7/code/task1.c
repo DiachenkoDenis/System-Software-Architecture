@@ -6,7 +6,7 @@ int main(void) {
     FILE *output;
     char buffer[256];
 
-    input = popen("rwho", "r");
+    input = popen("ls -l", "r");
     if (input == NULL) {
         perror("popen rwho");
         return 1;
