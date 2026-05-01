@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
         line_count++;
 
         if (line_count % PAGE_SIZE == 0) {
-            printf("\n--- Press Enter to continue ---");
+            printf("\nPress Enter to continue:");
             getchar();
         }
     }
