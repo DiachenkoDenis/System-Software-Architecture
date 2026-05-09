@@ -48,7 +48,7 @@ gcc -Wall task9_2.c -o task9_2
 gcc -Wall task9_3.c -o task9_3
 
 ### Запуск програми
-./task9_3
+sudo ./task9_3
 
 ### Результати виконання
 ![Результат](screenshots/task9_3.png)
