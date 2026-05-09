@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>  
 
 int main() {
     const char *directories[] = {
@@ -22,7 +23,7 @@ int main() {
         }
         char file[256];
         while (fgets(file, sizeof(file), fp) != NULL) {
-            file[strcspn(file, "\n")] = 0;
+            file[strcspn(file, "\n")] = 0; 
             printf("Перевіряємо файл: %s\n", file);  
             if (access(file, R_OK) == 0) {
                 printf("Можна читати файл %s.\n", file);
