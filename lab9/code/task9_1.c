@@ -17,7 +17,8 @@ int main() {
     getlogin_r(current_user, sizeof(current_user));
     printf("Звичайні користувачі (окрім вас):\n");
     while (fgets(line, sizeof(line), file)) {
-        // Розбиваємо рядок на частини
+
+        
         username = strtok(line, ":");
         strtok(NULL, ":");  
         uid_str = strtok(NULL, ":");
