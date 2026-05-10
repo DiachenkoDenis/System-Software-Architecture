@@ -11,11 +11,13 @@
 Код програми розміщено у файлі: code/crash_diag.c.c
 
 ### Компіляція програми
+```
 gcc -Wall -Wextra -O0 -g -fno-omit-frame-pointer -no-pie crash_diag.c -o crash_diag
-
+```
 ### Запуск програми
+```
 ./crash_diag
-
+```
 ### Результати виконання
 Після запуску програма викликає аварійну ситуацію (сегментаційна помилка) і виводить дамп регістрів процесу, включаючи адреси та значення, з якими стався збій:
 
@@ -30,11 +32,13 @@ gcc -Wall -Wextra -O0 -g -fno-omit-frame-pointer -no-pie crash_diag.c -o crash_d
 Код програми розміщено у файлі: code/sleep_correct.c
 
 ### Компіляція програми
+```
 gcc -Wall -Wextra -O2 sleep_correct.c -o sleep_correct
-
+```
 ### Запуск програми
+```
 ./sleep_correct
-
+```
 ### Результати виконання
 Програма чекає сигнал SIGUSR1 з іншого термінала. Після отримання сигналу програма відновлює свій цикл сну:
 
@@ -47,11 +51,13 @@ gcc -Wall -Wextra -O2 sleep_correct.c -o sleep_correct
 Код програми розміщено у файлі: code/rt_pubsub.c
 
 ### Компіляція програми
+```
 gcc -Wall -Wextra -O2 rt_pubsub.c -o rt_pubsub
-
+```
 ### Запуск програми
+```
 ./rt_pubsub sub
-
+```
 ### Результати виконання
 
 Термінал 1 (підписник):
