@@ -6,15 +6,67 @@
 #include <string.h>
 #include <unistd.h>
 
-static void subscriber(int use_timeout) {
+static void die(const char *msg) {
+    perror(msg);
+    exit(EXIT_FAILURE);
+}
+
+static long parse_long(const char *s, const char *what) {
+    char *end = NULL;
+    errno = 0;
+
+    long v = strtol(s, &end, 10);
+
+    if (errno != 0 || end == s || *end != '\0') {
+        fprintf(stderr, "invalid %s: %s\n", what, s);
+        exit(EXIT_FAILURE);
+    }
+
+    return v;
+}
+
+static int app_signal(void) {
     int sig = SIGRTMIN;
+
+    if (sig > SIGRTMAX) {
+        fprintf(stderr, "No available real-time signal\n");
+        exit(EXIT_FAILURE);
+    }
+
+    return sig;
+}
+
+static void usage(const char *prog) {
+    fprintf(stderr,
+        "Usage:\n"
+        "  %s sub\n"
+        "  %s sub-timeout\n"
+        "  %s pub <subscriber-pid> <int> [<int> ...]\n"
+        "Example:\n"
+        "  terminal 1: %s sub\n"
+        "  terminal 2: %s pub <pid> 10 20 30 -1\n",
+        prog, prog, prog, prog, prog);
+}
+
+static void subscriber(int use_timeout) {
+    int sig = app_signal();
+
     sigset_t set;
     sigemptyset(&set);
     sigaddset(&set, sig);
 
+    /*
+     * Important:
+     * Signal must be blocked before sigwaitinfo/sigtimedwait,
+     * otherwise it can be delivered by default disposition or a handler.
+     */
     if (sigprocmask(SIG_BLOCK, &set, NULL) == -1) {
         die("sigprocmask");
     }
+
+    printf("subscriber PID=%ld, waiting for signal %d (SIGRTMIN)\n",
+           (long)getpid(), sig);
+    fflush(stdout);
 
     for (;;) {
         siginfo_t si;
@@ -23,25 +75,36 @@ static void subscriber(int use_timeout) {
         int r;
 
         if (use_timeout) {
-            struct timespec ts = { .tv_sec = 5, .tv_nsec = 0 };
+            struct timespec ts = {
+                .tv_sec = 5,
+                .tv_nsec = 0
+            };
             r = sigtimedwait(&set, &si, &ts);
         } else {
             r = sigwaitinfo(&set, &si);
         }
 
         if (r == -1) {
-            if (errno == EINTR) continue;
+            if (errno == EINTR) {
+                continue;
+            }
+
             if (use_timeout && errno == EAGAIN) {
                 puts("timeout: no messages for 5 seconds");
                 continue;
             }
+
             die(use_timeout ? "sigtimedwait" : "sigwaitinfo");
         }
 
         int value = si.si_value.sival_int;
 
         printf("received signal=%d value=%d from pid=%ld uid=%ld\n",
-               r, value, (long)si.si_pid, (long)si.si_uid);
+               r,
+               value,
+               (long)si.si_pid,
+               (long)si.si_uid);
+        fflush(stdout);
 
         if (value < 0) {
             puts("negative value received: shutting down subscriber");
@@ -51,7 +114,7 @@ static void subscriber(int use_timeout) {
 }
 
 static void publisher(pid_t pid, int argc, char **argv) {
-    int sig = SIGRTMIN;
+    int sig = app_signal();
 
     for (int i = 3; i < argc; i++) {
         union sigval value;
@@ -62,7 +125,9 @@ static void publisher(pid_t pid, int argc, char **argv) {
         }
 
         printf("sent value=%d to pid=%ld via signal=%d\n",
-               value.sival_int, (long)pid, sig);
+               value.sival_int,
+               (long)pid,
+               sig);
     }
 }
 
@@ -81,6 +146,7 @@ int main(int argc, char **argv) {
             usage(argv[0]);
             return EXIT_FAILURE;
         }
+
         pid_t pid = (pid_t)parse_long(argv[2], "PID");
         publisher(pid, argc, argv);
     } else {
@@ -90,3 +156,4 @@ int main(int argc, char **argv) {
 
     return EXIT_SUCCESS;
 }
+
