@@ -31,11 +31,30 @@ static int sleep_relative_ms(long ms) {
     return 0;
 }
 
+static void add_ms(struct timespec *t, long ms) {
+    t->tv_sec += ms / 1000;
+    t->tv_nsec += (ms % 1000) * 1000000L;
+
+    while (t->tv_nsec >= 1000000000L) {
+        t->tv_sec++;
+        t->tv_nsec -= 1000000000L;
+    }
+}
+
 static int sleep_periodic_absolute(struct timespec *deadline, long period_ms) {
     int rc;
+
     add_ms(deadline, period_ms);
 
-    while ((rc = clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, deadline, NULL)) == EINTR) {}
+    while ((rc = clock_nanosleep(CLOCK_MONOTONIC,
+                                 TIMER_ABSTIME,
+                                 deadline,
+                                 NULL)) == EINTR) {
+        /*
+         * Reuse the same absolute deadline after a signal.
+         * Це не накопичує drift так, як relative sleep loop.
+         */
+    }
 
     if (rc != 0) {
         errno = rc;
@@ -57,10 +76,18 @@ int main(void) {
         return 1;
     }
 
+    printf("PID=%ld. In another terminal: kill -USR1 %ld\n",
+           (long)getpid(), (long)getpid());
+
+    puts("Relative sleep for 5 seconds using nanosleep restart loop...");
     if (sleep_relative_ms(5000) == -1) {
         perror("nanosleep");
         return 1;
     }
+
+    printf("Relative sleep finished. got_usr1=%d\n", got_usr1);
+
+    puts("Now 5 periodic ticks with absolute clock_nanosleep deadlines...");
 
     struct timespec next;
     if (clock_gettime(CLOCK_MONOTONIC, &next) == -1) {
